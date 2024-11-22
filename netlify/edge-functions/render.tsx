@@ -4,6 +4,7 @@ import { Head } from '../../app/root';
 import { renderHeadToString } from 'remix-island';
 
 export default async function handler(request: Request, context: any) {
+  let responseStatusCode = 200;
   const remixContext = await context.remix.getLoadContext();
   
   const stream = await renderToReadableStream(
@@ -12,7 +13,7 @@ export default async function handler(request: Request, context: any) {
       signal: request.signal,
       onError(error: unknown) {
         console.error(error);
-        return 'Internal Server Error';
+        responseStatusCode = 500;
       },
     }
   );
@@ -20,6 +21,7 @@ export default async function handler(request: Request, context: any) {
   const head = renderHeadToString({ request, remixContext, Head });
 
   return new Response(stream, {
+    status: responseStatusCode,
     headers: {
       'Content-Type': 'text/html',
       'Cross-Origin-Embedder-Policy': 'require-corp',
