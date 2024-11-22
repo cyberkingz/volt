@@ -12,7 +12,7 @@ export default async function handler(request: Request, context: any) {
       signal: request.signal,
       onError(error: unknown) {
         console.error(error);
-        return new Response('Internal Server Error', { status: 500 });
+        return 'Internal Server Error';
       },
     }
   );
