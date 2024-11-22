@@ -20,7 +20,9 @@
     "dockerbuild": "docker build -t bolt-ai:development -t bolt-ai:latest --target bolt-ai-development .",
     "typecheck": "tsc",
     "typegen": "wrangler types",
-    "preview": "pnpm run build && pnpm run start"
+    "preview": "pnpm run build && pnpm run start",
+    "netlify:build": "remix vite:build",
+    "netlify:dev": "remix vite:dev"
   },
   "engines": {
     "node": ">=18.18.0"
