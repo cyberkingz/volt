@@ -9,6 +9,7 @@ export default defineConfig((config) => {
   return {
     build: {
       target: 'esnext',
+      copyPublicDir: true,
     },
     plugins: [
       nodePolyfills({
