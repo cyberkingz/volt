@@ -5,11 +5,19 @@
 [build.environment]
   NODE_VERSION = "18.18.0"
 
-[dev]
-  command = "pnpm run dev"
-  port = 5173
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "cross-origin"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+[dev]
+  command = "pnpm run dev"
+  port = 5173
+  framework = "#custom"
